@@ -193,52 +193,53 @@ writeACNAPlot=function(x,bestSolution,
   save_plot(plot = this_genome_plot,filename = outputFile,base_height = 6)
 }
 ##END FUNCTIONS
-
-
-#Directories and files. This needs to be filled up to replicate the experiment
-inDir= "" #rawReads directory containing the raw count data
-outDir="" #inputDir for genetics.R and getBinaryData.R
-sampleDataFile="" #csv design file
+configFile <- paste(sep="/",Sys.getenv("lviProjectDNAScripts"),"configFile")
+if(!file.exists(configFile)){
+    stop("Configuration file configFile not found. Edit configFile.in to adapt it to your system, save it as configFile, and export the lviProjectDNAScripts environment variable before running this script")
+}
+source(configFile)
 
 dir.create(outDir)
-
+outDir <- acnaDir
 
 ##Segmentation parameters
 ###MergeLevels
 pv.thres=1e-10
-
 
 ##CNA calling (Rascal) parameters
 min_ploidy <- 1.25
 max_ploidy <- 5.5
 min_cellularity <- 0.2
 max_cellularity <- 1
-max_absolute_copy_number=12
-min_absolute_copy_number=0
-max_bins_display=100000 ##Bins are subsampled to this number for plotting
-bin_color="black"
-segment_color="red"
-absolute_copy_number_step_color="blue"
-
+max_absolute_copy_number <- 12
+min_absolute_copy_number <- 0
+max_bins_display <- 100000 ##Bins are subsampled to this number for plotting
+bin_color <- "black"
+segment_color <- "red"
+absolute_copy_number_step_color <- "blue"
 
 #Data IO and manipulation:
-sampleData=fread(sampleDataFile)
-sampleData[,`:=`(label=paste(sep="_",STAGE,1:.N)),by=.(PATIENT,STAGE)]
+sampleData <- fread(originalSampleDataFile)
+setnames(sampleData,old=c("Sample_ID","Case"),new=c("sampleID","patient"))
+
+sampleData <- sampleData[,lapply(.SD,first),by=sampleID]#WARNING: there were repeated labels that I am removing here
+
+sampleData[,`:=`(label=paste(sep="_",Stage,1:.N)),by=.(patient,Stage)]
+sampleData[,`:=`(fullLabel=paste(sep=".",patient,label))]
+write.table(sampleData,
+            file=paste0(outDir,sampleDataFile),
+            sep="\t",
+            quote=F,
+            row.names = F)
 
 ##Iters contains the information of the samples for which we will run the CNA calling algorithm
-iters=data.table(file=as.character(NULL),patient=as.character(NULL),label=as.character(NULL))
-for (thisPatient in sampleData[,unique(PATIENT)]) {
-  for (sampleID in sampleData[PATIENT==thisPatient,]$Pool_Index_Name){
-    thisFile=paste0(inDir,"/",sampleID,"_50_readCounts.rds")
-    thisLabel=sampleData[PATIENT==thisPatient & Pool_Index_Name==sampleID,label]
-    iters=rbind(iters,data.table(file=thisFile,patient=thisPatient,label=thisLabel))
-  }
-}
+sampleData[,`:=`(file=paste0(inDir,"/",sampleID,"_50_readCounts.RData"))]
+iters <- sampleData[,.(file,patient,label)]
 
 ##Main loop.
 #There is fine-grained parallelism inside some of the calling routines, so for now I am executing this loop in series. 
 #This is not the best strategy and the analysis would most probably be faster with coarse-grain parallelism at this level.
-future::plan("multisession", workers=8)
+future::plan("multisession", workers=mc.cores)
 allSolutions=NULL
 varTable=data.table(patient=as.character(NULL),label=as.character(NULL),observedVariance=as.numeric(NULL),expectedVariance=as.numeric(NULL))
 

@@ -1,10 +1,17 @@
 library(data.table)
 library(phangorn)
 
-#Config: This needs to be filled up to replicate the experiment
-inDir="" #outDir of CNACalling.R
-outDir=""
-pattern="^(.*)[:.:]([^.]*)[:.:]best[:.:]ACNAs[:.:]c(.*)[:.:]p(.*)[:.:]tsv$" ##[::] is R's way of scape something, similar to \ or \\ in most regex
+#Config IO
+configFile <- paste(sep="/",Sys.getenv("lviProjectDNAScripts"),"configFile")
+if(!file.exists(configFile)){
+    stop("Configuration file configFile not found. Edit configFile.in to adapt it to your system, save it as configFile, and export the lviProjectDNAScripts environment variable before running this script")
+}
+source(configFile)
+inDir <- acnaDir
+outDir <- breakpointDir
+
+#Config
+pattern <- "^(.*)[:.:]([^.]*)[:.:]best[:.:]ACNAs[:.:]c(.*)[:.:]p(.*)[:.:]tsv$" ##[::] is R's way of scape something, similar to \ or \\ in most regex
 
 
 #Parsing data
@@ -16,7 +23,7 @@ allCalls=rbindlist(lapply(fileList,function(x,pattern){theData=fread(x);theData[
                                                                                       cellularity=as.numeric(gsub(basename(x),pattern=pattern,replacement="\\3")),
                                                                                       ploidy=as.numeric(gsub(basename(x),pattern=pattern,replacement="\\4")))]},pattern=pattern))
 
-badSamples=data.table(patient=c("PATIENT_03","PATIENT_05","PATIENT_14"),sample=c("Met_1","LVI_1","NORMAL_2"))
+badSamples <- data.table(patient=c("344","740"),sample=c("NORMAL_2","NORMAL_1"))
 setkey(badSamples,patient,sample)
 setkey(allCalls,patient,sample)
 
@@ -37,6 +44,9 @@ longOnes[,`:=`(variable=NULL,state=1)]
 
 setkey(longOnes,chrom,pos,sample_id)
 
+#Preparing output directory
+dir.create(outDir,recursive = T)
+
 #Now, per patient, we need to fill-up the 0s (existing breakpoints that are not present)
 for (thisPatient in longOnes[,unique(patient)]){
   #print(patient)
@@ -55,7 +65,7 @@ for (thisPatient in longOnes[,unique(patient)]){
   ##Substitute 0s for 1s in the corresponding positions
   allBreakPointsThisPatientBySample[longOnes[patient==thisPatient],`:=`(state=1)]
   
-  #Just a quick checkfor fun
+  #Just a quick check
   #hist(allBreakPointsThisPatientBySample[,.(sum(state)),by=.(chrom,pos)]$V1)
   
   ##Long to wide
