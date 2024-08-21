@@ -124,11 +124,11 @@ if(!file.exists(configFile)){
 }
 source(configFile)
 setDTthreads(1)
-inDir <- acnaDir
+inputDir <- acnaDir
 varFile <- paste(sep="/",acnaDir,"variance.tsv")
 
-inputDataImage <- paste(inDir,inputDataImageName) #Not needed
-calculationDataImage <- paste(inDir,calculationDataImageName) #Not needed
+inputDataImage <- paste(inputDir,inputDataImageName) #Not needed
+calculationDataImage <- paste(inputDir,calculationDataImageName) #Not needed
 
 options(mc.cores=mc.cores)
 

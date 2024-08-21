@@ -8,7 +8,7 @@ These analysis are carried out in eight main steps, CNA calling, Genetic analyse
 To replicate these analyses, follow these steps:
 1. Modify the configFile.in file to configure it for your system and rename it as configFile. 
 2. Export an environmental variable with the absolute path of this repository `export lviProjectDNAScripts="/path/to/the/repository/lviProjectDNAScripts/"`
-3. Make sure to have installed all the dependencies [listed below](##dependencies). You can execute the R script *dependencies.R* to install all R packages.
+3. Make sure to have installed all the dependencies [listed below](#dependencies). You can execute the R script *dependencies.R* to install all R packages.
 4. Run the analyses you are interested in from the list below
 
 ## Analyses

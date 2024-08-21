@@ -142,7 +142,7 @@ if(file.exists(summaryFile)) {
   alteredData[totalGenome,`:=`(propAltered=altered/genomeLength,propGain=gainL/lossL)]
   
   #Info integration
-  sampleData <- fread(sampleDataFile)
+  sampleData <- fread(originalSampleDataFile)
   sampleData <- sampleData[,lapply(.SD,first),by=Sample_ID]#WARNING: there were repeated labels that I am removing here
   patientData <- sampleData[,.(cohort = unique(Cohort), LVI_subtype = unique(LVI_subtype)),by=.(patient = as.character(Case))]
   patientData[LVI_subtype == "NA",`:=`(LVI_subtype = NA)][,`:=`(LVI_subtype = factor(LVI_subtype))]
@@ -218,7 +218,7 @@ propPlotB <- ggplot(data=stagesWithNormalData,aes(x=stage,y=propAltered,fill=sta
   #theme_cowplot() +
   theme_bw()
 
-save_plot(filename=paste(sep="/",plotDir,paste0(date,"_PGA_by_Stage_ALL_DF",".pdf")),plot = propPlot, base_height = baseHeight)
+save_plot(filename=paste(sep="/",plotDir,paste0(date,"_PGA_by_Stage_ALL_DF",".pdf")),plot = propPlot, base_height = baseHeight, create.dir = T)
 ggsave(filename=paste(sep="/",plotDir,paste0(date,"_PGA_by_Stage_ALL.pdf")), plot = propPlotB, width = ggSaveWidth, height = ggSaveHeight)   
 
 
