@@ -199,8 +199,8 @@ if(!file.exists(configFile)){
 }
 source(configFile)
 
-dir.create(outDir)
 outDir <- acnaDir
+dir.create(outDir)
 
 ##Segmentation parameters
 ###MergeLevels
@@ -227,7 +227,7 @@ sampleData <- sampleData[,lapply(.SD,first),by=sampleID]#WARNING: there were rep
 sampleData[,`:=`(label=paste(sep="_",Stage,1:.N)),by=.(patient,Stage)]
 sampleData[,`:=`(fullLabel=paste(sep=".",patient,label))]
 write.table(sampleData,
-            file=paste0(outDir,sampleDataFile),
+            file=sampleDataFile,
             sep="\t",
             quote=F,
             row.names = F)
