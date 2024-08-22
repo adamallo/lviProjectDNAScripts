@@ -19,11 +19,11 @@ To replicate these analyses, follow these steps:
 - **Clonality analysis**: the script clonalityScore.R assesses the clonality of the different neoplastic stages using breakclone.
 
 - **GISTIC 2.0 analysis**: the script makeGisticInputFromTsvFiles.sh puts together the input file for GISTIC 2.0.
-    1. Execute makeGisticInputFromTsvFiles.sh as `source $lviProjectDNAScripts/configFile; ./makeGisticInputFromTsvFiles.sh -o $acnaDir/$gisticInputName $(find $acnaDir -name *highcell*.tsv | grep -v NORMAL)`
-    2. Run GISTIC2.0 using the following command `source $lviProjectDNAScripts/configFile; gistic2 -b $gisticOutDir -seg $acnaDir/$gisticInputName -refgene $gisticMatrixFile -genegistic 1 -smallmem 1 -broad 1 -brlen 0.5 -conf 0.90 -armpeel 1 -savegene 1 -gcm extreme`.
+    1. Execute makeGisticInputFromTsvFiles.sh as `source $lviProjectDNAScripts/configFile; ./makeGisticInputFromTsvFiles.sh -o $gisticInputFile $(find $acnaDir -name *highcell*.tsv | grep -v NORMAL)`
+    2. Run GISTIC2.0 using the following command `source $lviProjectDNAScripts/configFile; gistic2 -b $gisticOutDir -seg $gisticInputFile -refgene $gisticMatrixFile -genegistic 1 -smallmem 1 -broad 1 -brlen 0.5 -conf 0.90 -armpeel 1 -savegene 1 -gcm extreme`.
     - Alternatively, we also used only one LVI sample per patient instead of all non-normal samples to detect recurrent alterations in LVI tissue only. For this, run this alternative series of steps after step 1.:
     2. Execute lviSelection.R
-    3. Run GISTIC2.0 using the following command `source $lviProjectDNAScripts/configFile; gistic2 -b $gisticLVIOutDir -seg $acnaDir/$gisticLVIInputName -refgene $gisticMatrixFile -genegistic 1 -smallmem 1 -broad 1 -brlen 0.5 -conf 0.90 -armpeel 1 -savegene 1 -gcm extreme`.
+    3. Run GISTIC2.0 using the following command `source $lviProjectDNAScripts/configFile; gistic2 -b $gisticLVIOutDir -seg $acnaDir/$gisticLVIInputFile -refgene $gisticMatrixFile -genegistic 1 -smallmem 1 -broad 1 -brlen 0.5 -conf 0.90 -armpeel 1 -savegene 1 -gcm extreme`.
 
 - **Associations between recurrent CNAs and Stages and LVI subtypes**: the script gisticAssociations.R does these comparisons and requires the GISTIC 2.0 results.
 

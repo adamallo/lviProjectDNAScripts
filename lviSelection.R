@@ -7,8 +7,8 @@ if(!file.exists(configFile)){
 source(configFile)
 
 
-inputFile <- paste(sep="/",acnaDir,gisticInputName)
-outputFile <- paste(sep="/",acnaDir,gisticLVIInputName)
+inputFile <- gisticInputFile
+outputFile <- gisticLVIInputFile
 varFile <- paste(sep="/",acnaDir,"variance.tsv")
 
 theseData <- fread(inputFile)
