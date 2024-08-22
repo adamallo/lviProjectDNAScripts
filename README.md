@@ -31,7 +31,7 @@ To replicate these analyses, follow these steps:
 
 - **Enrichment analyses**: CNA enrichment analyses of all alterations (deNovoEnrichment.R) or recurrent alterations (deNovoEnrichmentGistic.R). The second requires the GISTIC 2.results.
 
-- **Phylogenetic/dendogram reconstruction**: the scripts getBinaryData.R generates binary data using breakpoint information, which then is used in Phylip to reconstruct the best sample tree and its bootstrap support (runPhylip.sh, must be run from the directory with the results from getBinaryData.R. It uses dollopCMD, dollopCMDBoost, and seqbootCMD command files internally). Finally, the script dollopAnalysis.R performs the ancestral state reconstruction and generates the plots for the manuscript.
+- **Phylogenetic/dendogram reconstruction**: the scripts getBinaryData.R generates binary data using breakpoint information, which then is used in Phylip to reconstruct the best sample tree and its bootstrap support (runPhylip.sh, must be run from the directory with the results from getBinaryData.R, for example using `$scriptsDir/runPhylip.sh`. It uses dollopCMD, dollopCMDBoost, and seqbootCMD command files internally). Finally, the script dollopAnalysis.R performs the ancestral state reconstruction and generates the plots for the manuscript.
 
 ## Dependencies
 
