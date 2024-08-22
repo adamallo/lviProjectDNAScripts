@@ -10,7 +10,7 @@ requiredCranPackages <- c("devtools",
                       "ggpubr",
                       "ggsignif",
                       "ggtree",
-					  "ggimage",
+                      "ggimage",
                       "glmmTMB",
                       "matrixStats",
                       "parallel",
@@ -18,14 +18,14 @@ requiredCranPackages <- c("devtools",
                       "tidytree")
 
 toInstallCranPackages <- requiredCranPackages[!requiredCranPackages %in% installed.packages()]
-install.packages(toInstallCranPackages, dependencies = T)
+install.packages(toInstallCranPackages, dependencies = T, repos = "http://cran.us.r-project.org")
 
 #Bioconductor
 library("BiocManager")
 requiredBiocPackages <- c("aCGH",
                           "AnnotationDbi",
                           "CGHcall",
-						  "HDO.db",
+                          "HDO.db",
                           "clusterProfiler",
                           "DNAcopy",
                           "enrichplot",

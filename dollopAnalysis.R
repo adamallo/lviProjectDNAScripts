@@ -13,7 +13,6 @@ if(!file.exists(configFile)){
 }
 source(configFile)
 inDir <- breakpointDir
-plotDir 
 
 pattern="^([^_]*).phy$"
 
