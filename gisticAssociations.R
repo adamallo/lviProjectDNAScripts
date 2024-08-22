@@ -51,7 +51,7 @@ StageCombinations <- combn(unique(finalGisticDataUnionPerStage$Stage),2)
 
 getResultsStage <- function(thisData,stageFrom,stageTo){
   #Calculating associations
-  results <- rbindlist(mclapply(mc.cores = mc.cores, unique(thisData$CombinedDescriptor),function(thisDescriptor){
+  results <- rbindlist(mclapply(mc.cores = mc_cores, unique(thisData$CombinedDescriptor),function(thisDescriptor){
     testStage <- fisher.test(table(thisData[CombinedDescriptor == thisDescriptor & Stage %in% c(stageFrom,stageTo),.(Altered,Stage)]))
     propsStage <- thisData[CombinedDescriptor == thisDescriptor & Stage %in% c(stageFrom,stageTo),.N, by =.(Altered,Stage)][,`:=`(Total=sum(N)),by=Stage][Altered==1,.(propAltered=N/Total),by=Stage]
     resultsStage <- data.table(CombinedDescriptor = thisDescriptor,p.value = testStage$p.value,props = propsStage$propAltered,Stage = propsStage$Stage, stageFrom=stageFrom,stageTo=stageTo) 
@@ -76,7 +76,7 @@ resultsStageAllCombs1Sample[p.value<0.05,]
 #Subtypes
 getResultsSubtype <- function(thisData){
   #Calculating associations
-  results <- rbindlist(mclapply(mc.cores = mc.cores, unique(thisData$CombinedDescriptor),function(thisDescriptor){
+  results <- rbindlist(mclapply(mc.cores = mc_cores, unique(thisData$CombinedDescriptor),function(thisDescriptor){
     testSubtype <- fisher.test(table(thisData[CombinedDescriptor == thisDescriptor,.(Altered,LVI_subtype)]))
     propsSubtype <- thisData[CombinedDescriptor == thisDescriptor,.N, by =.(Altered,LVI_subtype)][,`:=`(Total=sum(N)),by=LVI_subtype][Altered==1,.(propAltered=N/Total),by=LVI_subtype]
     resultsSubtype <- data.table(CombinedDescriptor = thisDescriptor,p.value = testSubtype$p.value,props = propsSubtype$propAltered,LVI_subtype=propsSubtype$LVI_subtype) 

@@ -130,7 +130,7 @@ varFile <- paste(sep="/",acnaDir,"variance.tsv")
 inputDataImage <- paste(inputDir,inputDataImageName) #Not needed
 calculationDataImage <- paste(inputDir,calculationDataImageName) #Not needed
 
-options(mc.cores=mc.cores)
+options(mc.cores=mc_cores)
 
 ##Data parsing##
 ################

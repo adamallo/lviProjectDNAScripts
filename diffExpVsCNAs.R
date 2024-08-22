@@ -89,7 +89,7 @@ getDifferentialAlterationByStageData = function(diffExpData, CNAdata, sampleData
       mutate(overlap=calcOverlap(thisGene$start,thisGene$end,start,end),symbol.diffExp=thisGene$symbol.diffExp) %>%
       group_by(sample) %>%
       summarize(across(-c("overlap","logR","chromosome","start","end"),first),WeightedMeanLogR = weighted.mean(logR,w = overlap/sum(overlap)))
-  },mc.cores=mc.cores))
+  },mc.cores=mc_cores))
   
   allResultsMerged <- left_join(allResults,diffExpFinal,by=join_by(symbol.diffExp))
   allResultsMerged <- left_join(allResultsMerged,sampleData%>%mutate(patient=as.character(patient)),by=join_by(sample==fullLabel,patient==patient),keep = F)
@@ -197,7 +197,7 @@ getDifferentialAlterationBySubtypeData = function(diffExpData, CNAdata, sampleDa
       mutate(overlap=calcOverlap(thisGene$start,thisGene$end,start,end),symbol.diffExp=thisGene$symbol.diffExp) %>%
       group_by(sample) %>%
       summarize(across(-c("overlap","logR","chromosome","start","end"),first),WeightedMeanLogR = weighted.mean(logR,w = overlap/sum(overlap)))
-  },mc.cores=mc.cores))
+  },mc.cores=mc_cores))
   
   allResultsMerged <- left_join(allResults,diffExpFinal,by=join_by(symbol.diffExp))
   allResultsMerged <- left_join(allResultsMerged,sampleData%>%mutate(patient=as.character(patient)),by=join_by(sample==fullLabel,patient==patient),keep = F)

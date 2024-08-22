@@ -239,7 +239,7 @@ iters <- sampleData[,.(file,patient,label)]
 ##Main loop.
 #There is fine-grained parallelism inside some of the calling routines, so for now I am executing this loop in series. 
 #This is not the best strategy and the analysis would most probably be faster with coarse-grain parallelism at this level.
-future::plan("multisession", workers=mc.cores)
+future::plan("multisession", workers=mc_cores)
 allSolutions=NULL
 varTable=data.table(patient=as.character(NULL),label=as.character(NULL),observedVariance=as.numeric(NULL),expectedVariance=as.numeric(NULL))
 
