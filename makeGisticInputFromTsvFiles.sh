@@ -70,7 +70,7 @@ else
 	fi
 fi
 
-mkdir -f $(dirname $outputFile)
+mkdir -p $(dirname $outputFile)
 
 echo -e "Sample\tChromosome\tStart Position\tEnd Position\tNum Markers\tSeg.CN" > $outputFile
 for file in $@;
