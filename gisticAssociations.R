@@ -12,8 +12,8 @@ if(!file.exists(configFile)){
     stop("Configuration file configFile not found. Edit configFile.in to adapt it to your system, save it as configFile, and export the lviProjectDNAScripts environment variable before running this script")
 }
 source(configFile)
-varFile <- paste(sep="/",acnaDir,"variance.tsv")
-gisticFile <- gisticOutputFile
+varFile <- paste(sep="/", acnaDir, "variance.tsv")
+gisticFile <- paste(sep="/", gisticOutdir, gisticOutputFilename)
 
 #IO
 sampleData <- fread(sampleDataFile)

@@ -17,12 +17,14 @@ if(!file.exists(configFile)){
 }
 source(configFile)
 inDir <- acnaDir
-varFile <- paste(sep="/",acnaDir,"variance.tsv")
+varFile <- paste(sep="/", acnaDir, "variance.tsv")
 
 if(gisticLVIOnly==T){
-    gisticFile <- gisticLVIOutputFile
+	print("Using LVI-only gistic results")
+    gisticFile <- paste(sep="/", gisticLVIOutDir, gisticOutputFilename)
 } else {
-    gisticFile <- gisticOutputFile
+	print("Using all gistic results")
+    gisticFile <- paste(sep="/", gisticOutDir, gisticOutputFilename)
 }
 
 #Files

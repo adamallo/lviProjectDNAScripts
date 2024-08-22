@@ -31,8 +31,7 @@ phylipSuffix=".app/Contents/MacOS/" #suffix to add to the program name to find t
 
 #gisticAssociations and deNovoEnrichmentGistic 
 gisticLVIOnly=F #logical indicating if the deNovoEnrichmentGistic must be executed with the lvi-only recurrent alterations or all. This does not affect gisticAssociations, which is always done with the results using all input data for GISTIC2.0
-gisticOutputFile="${gisticOutDir}/all_lesions.conf_90.txt" #doesn't needed to be changed
-gisticLVIOutputFile="${gisticLVIOutDir}/all_lesions.conf_90.txt" #doesn't needed to be changed
+gisticOutputFilename="all_lesions.conf_90.txt" #doesn't needed to be changed
 
 #diffExpVsCNAs
 ##Input
