@@ -1,14 +1,16 @@
-library(data.table)
-library(GenomicRanges)
-library(rtracklayer)
-library(GenomicFeatures)
-library(AnnotationDbi)
-library(org.Hs.eg.db)
-library(TxDb.Hsapiens.UCSC.hg38.knownGene)
-library(clusterProfiler)
-library(enrichplot)
-library(ggplot2)
-library(cowplot)
+suppressMessages({
+  library(data.table)
+  library(GenomicRanges)
+  library(rtracklayer)
+  library(GenomicFeatures)
+  library(AnnotationDbi)
+  library(org.Hs.eg.db)
+  library(TxDb.Hsapiens.UCSC.hg38.knownGene)
+  library(clusterProfiler)
+  library(enrichplot)
+  library(ggplot2)
+  library(cowplot)
+})
 
 #IO Config
 ##########

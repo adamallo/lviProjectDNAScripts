@@ -1,4 +1,6 @@
-library(data.table)
+suppressMessages({
+  library(data.table)
+})
 
 configFile <- paste(sep="/",Sys.getenv("lviProjectDNAScripts"),"configFile")
 if(!file.exists(configFile)){

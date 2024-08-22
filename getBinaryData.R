@@ -1,5 +1,7 @@
-library(data.table)
-library(phangorn)
+suppressMessages({
+  library(data.table)
+  library(phangorn)
+})
 
 #Config IO
 configFile <- paste(sep="/",Sys.getenv("lviProjectDNAScripts"),"configFile")

@@ -1,10 +1,12 @@
-library(data.table)
-library(ape)
-library(phangorn)
-library(ggplot2)
-library(cowplot)
-library(tidytree)
-library(ggtree)
+suppressMessages({
+  library(data.table)
+  library(ape)
+  library(phangorn)
+  library(ggplot2)
+  library(cowplot)
+  library(tidytree)
+  library(ggtree)
+ })
 
 #IO config
 configFile <- paste(sep="/",Sys.getenv("lviProjectDNAScripts"),"configFile")

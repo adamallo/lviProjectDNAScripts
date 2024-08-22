@@ -1,7 +1,9 @@
-library(tidyverse)
-library(readxl)
-library(parallel)
-library(annotables) #devtools::install_github("stephenturner/annotables")
+suppressMessages({
+  library(tidyverse)
+  library(readxl)
+  library(parallel)
+  library(annotables) #devtools::install_github("stephenturner/annotables")
+})
 
 #FUNCTIONS
 calcOverlap <- function(refStart,refEnd,segStart,segEnd){

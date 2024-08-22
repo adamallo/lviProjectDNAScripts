@@ -1,7 +1,9 @@
-library(data.table)
-library(parallel)
-library(ggplot2)
-library(cowplot)
+suppressMessages({
+  library(data.table)
+  library(parallel)
+  library(ggplot2)
+  library(cowplot)
+})
 
 #Config
 setDTthreads(1) #I am doing coarse-grained parallelism

@@ -1,11 +1,13 @@
-library(ggplot2)
-library(cowplot)
-library(ggbeeswarm)
-library(data.table)
-library(GenomicRanges)
-library(breakclone) ##https://github.com/Sawyer-s-Group/breakclone
-library(QDNAseq)
-library(parallel)
+suppressMessages({
+  library(ggplot2)
+  library(cowplot)
+  library(ggbeeswarm)
+  library(data.table)
+  library(GenomicRanges)
+  library(breakclone) ##https://github.com/Sawyer-s-Group/breakclone
+  library(QDNAseq)
+  library(parallel)
+})
 
 ##My functions
 

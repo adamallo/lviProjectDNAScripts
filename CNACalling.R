@@ -1,12 +1,14 @@
-library(QDNAseq)
-library(DNAcopy)
-library(data.table)
-library(aCGH)
-library(CGHcall)
-library(cowplot)
-library(tibble)
-library(dplyr)
-library(rascal)
+suppressMessages({
+  library(QDNAseq)
+  library(DNAcopy)
+  library(data.table)
+  library(aCGH)
+  library(CGHcall)
+  library(cowplot)
+  library(tibble)
+  library(dplyr)
+  library(rascal)
+})
 
 #FUNCTIONS
 ##########

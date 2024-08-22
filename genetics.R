@@ -1,13 +1,14 @@
-library(data.table)
-library(ggplot2)
-library(ggbeeswarm)
-library(cowplot)
-library(ggsignif)
-library(ggpubr)
-library(car)
-library(emmeans)
-library(glmmTMB)
-
+suppressMessages({
+  library(data.table)
+  library(ggplot2)
+  library(ggbeeswarm)
+  library(cowplot)
+  library(ggsignif)
+  library(ggpubr)
+  library(car)
+  library(emmeans)
+  library(glmmTMB)
+})
 
 #FUNCTIONS
 myPairwiseWilcox=function(indt,var="propAltered"){
