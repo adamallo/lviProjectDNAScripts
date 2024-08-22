@@ -12,26 +12,26 @@ To replicate these analyses, follow these steps:
 4. Run the analyses you are interested in from the list below
 
 ## Analyses
-- **CNA calling**: the script CNACalling.R performs the CNA calling using QDNAseq and Rascal. This step is required for all downstream analyses.
+- **CNA calling**: the script *CNACalling.R* performs the CNA calling using QDNAseq and Rascal. This step is required for all downstream analyses.
 
-- **Genetic analyses**: the script genetics.R performs the statistical analysis and plots for the genetic characterization of the different neoplasia stages.
+- **Genetic analyses**: the script *genetics.R* performs the statistical analysis and plots for the genetic characterization of the different neoplasia stages.
 
-- **Clonality analysis**: the script clonalityScore.R assesses the clonality of the different neoplastic stages using breakclone.
+- **Clonality analysis**: the script *clonalityScore.R* assesses the clonality of the different neoplastic stages using breakclone.
 
-- **GISTIC 2.0 analysis**: the script makeGisticInputFromTsvFiles.sh puts together the input file for GISTIC 2.0.
-    1. Execute makeGisticInputFromTsvFiles.sh as `source $lviProjectDNAScripts/configFile; $scriptsDir/makeGisticInputFromTsvFiles.sh -o $gisticInputFile $(find $acnaDir -name "*highcell*.tsv" | grep -v NORMAL)`
+- **GISTIC 2.0 analysis**: the script *makeGisticInputFromTsvFiles.sh* puts together the input file for GISTIC 2.0.
+    1. Execute *makeGisticInputFromTsvFiles.sh* as `source $lviProjectDNAScripts/configFile; $scriptsDir/makeGisticInputFromTsvFiles.sh -o $gisticInputFile $(find $acnaDir -name "*highcell*.tsv" | grep -v NORMAL)`
     2. Run GISTIC2.0 using the following command `source $lviProjectDNAScripts/configFile; gistic2 -b $gisticOutDir -seg $gisticInputFile -refgene $gisticMatrixFile -genegistic 1 -smallmem 1 -broad 1 -brlen 0.5 -conf 0.90 -armpeel 1 -savegene 1 -gcm extreme`.
     - Alternatively, we also used only one LVI sample per patient instead of all non-normal samples to detect recurrent alterations in LVI tissue only. For this, run this alternative series of steps after step 1.:
-    2. Execute lviSelection.R
+    2. Execute *lviSelection.R*
     3. Run GISTIC2.0 using the following command `source $lviProjectDNAScripts/configFile; gistic2 -b $gisticLVIOutDir -seg $acnaDir/$gisticLVIInputFile -refgene $gisticMatrixFile -genegistic 1 -smallmem 1 -broad 1 -brlen 0.5 -conf 0.90 -armpeel 1 -savegene 1 -gcm extreme`.
 
-- **Associations between recurrent CNAs and Stages and LVI subtypes**: the script gisticAssociations.R does these comparisons and requires the GISTIC 2.0 results.
+- **Associations between recurrent CNAs and Stages and LVI subtypes**: the script *gisticAssociations.R* does these comparisons and requires the GISTIC 2.0 results.
 
-- **Comparison between differential expression and copy number alteration results**: the script diffExpVsCNAs.R does these comparisons.
+- **Comparison between differential expression and copy number alteration results**: the script *diffExpVsCNAs.R* does these comparisons.
 
-- **Enrichment analyses**: CNA enrichment analyses of all alterations (deNovoEnrichment.R) or recurrent alterations (deNovoEnrichmentGistic.R). The second requires the GISTIC 2.results.
+- **Enrichment analyses**: CNA enrichment analyses of all alterations (*deNovoEnrichment.R*) or recurrent alterations (*deNovoEnrichmentGistic.R*). The second requires the GISTIC 2.results.
 
-- **Phylogenetic/dendogram reconstruction**: the scripts getBinaryData.R generates binary data using breakpoint information, which then is used in Phylip to reconstruct the best sample tree and its bootstrap support (runPhylip.sh, must be run from the directory with the results from getBinaryData.R, for example using `$scriptsDir/runPhylip.sh`. It uses dollopCMD, dollopCMDBoost, and seqbootCMD command files internally). Finally, the script dollopAnalysis.R performs the ancestral state reconstruction and generates the plots for the manuscript.
+- **Phylogenetic/dendogram reconstruction**: the scripts *getBinaryData.R* generates binary data using breakpoint information, which then is used in Phylip to reconstruct the best sample tree and its bootstrap support (*runPhylip.sh*, must be run from the directory with the results from *getBinaryData.R*, for example using `$scriptsDir/runPhylip.sh`. It uses *dollopCMD*, *dollopCMDBoost*, and *seqbootCMD* command files internally). Finally, the script *dollopAnalysis.R* performs the ancestral state reconstruction and generates the plots for the manuscript.
 
 ## Dependencies
 
