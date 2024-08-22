@@ -35,7 +35,7 @@ gisticOutputFilename="all_lesions.conf_90.txt" #doesn't needed to be changed
 
 #diffExpVsCNAs
 ##Input
-diffExpDir="" #path to the directory with files with differentially expressed genes (names below, not need to be changed)
+diffExpDir="/Users/diego/Desktop/lvi/toReplicateExperiments/diffExpGenes/" #path to the directory with files with differentially expressed genes (names below, not need to be changed)
 diffExpStageDisc="diffExpStageDisc.xlsx" 
 diffExpStageVal="diffExpStageVal.xlsx"
 diffExpAcrossDisc="diffExpAcrossDisc.csv"
