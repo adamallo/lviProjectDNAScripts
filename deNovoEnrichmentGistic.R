@@ -1,3 +1,5 @@
+#!/usr/bin/env Rscript
+
 suppressMessages({
   library(data.table)
   library(GenomicRanges)

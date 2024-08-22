@@ -1,3 +1,5 @@
+#!/usr/bin/env Rscript
+
 suppressMessages({
   library(ggplot2)
   library(cowplot)

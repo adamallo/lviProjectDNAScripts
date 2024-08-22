@@ -1,3 +1,5 @@
+#!/usr/bin/env Rscript
+
 #CRAN
 requiredCranPackages <- c("devtools",
                       "BiocManager",
