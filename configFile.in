@@ -26,7 +26,8 @@ gisticLVIInputFile="" #path to the alternative input file for GISTIC2.0, generat
 gisticLVIOutDir="" #path to the output directory of the alternative GISTIC2.0 analysis
 
 #runPhylip
-phylipDir="/Applications/phylip/dollop.app/Contents/MacOS/" #location of Phylip's dollop executable: MacOS default
+phylipDir="/Applications/phylip/" #path to Phylip's programs
+phylipSuffix=".app/Contents/MacOS/" #suffix to add to the program name to find the executable (e.g. $phylipDir/dollop${phylipSuffix}/dollop should point to the dollop executable): MacOS default
 
 #gisticAssociations and deNovoEnrichmentGistic 
 gisticLVIOnly=F #logical indicating if the deNovoEnrichmentGistic must be executed with the lvi-only recurrent alterations or all. This does not affect gisticAssociations, which is always done with the results using all input data for GISTIC2.0

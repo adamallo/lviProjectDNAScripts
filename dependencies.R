@@ -24,6 +24,7 @@ library("BiocManager")
 requiredBiocPackages <- c("aCGH",
                           "AnnotationDbi",
                           "CGHcall",
+						  "HDO.db",
                           "clusterProfiler",
                           "DNAcopy",
                           "enrichplot",
