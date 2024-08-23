@@ -17,7 +17,7 @@ if(!file.exists(configFile)){
 }
 source(configFile)
 varFile <- paste(sep="/", acnaDir, "variance.tsv")
-gisticFile <- paste(sep="/", gisticOutdir, gisticOutputFilename)
+gisticFile <- paste(sep="/", gisticOutDir, gisticOutputFilename)
 
 #IO
 sampleData <- fread(sampleDataFile)

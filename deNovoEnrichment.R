@@ -157,4 +157,4 @@ lviSubtypesGenes <- list("Immune dense\nGain"=allGenesWithPatientData[theseSampl
 ck_lviSubtypes <- getCK(lviSubtypesGenes)
 ck_lviSubtypes.simpl.0.35 <- simplify(ck_lviSubtypes,cutoff=0.35, by="p.adjust", select_fun=min) ##adjust cutoff to reduce more or less the terms.
 goPlot <- dotplot(ck_lviSubtypes.simpl.0.35, showCategory = 40)
-save_plot(filename=paste(sep="/",plotDir,paste0(date,"_GO_by_Subtype_LVI",".pdf")),plot = goPlot, base_height = baseHeight)
+save_plot(filename=paste(sep="/",plotDir,paste0(date,"_GO_by_Subtype_LVI",".pdf")),plot = goPlot, base_height = baseHeight, create.dir = T)

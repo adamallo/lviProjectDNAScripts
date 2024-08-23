@@ -151,7 +151,7 @@ saveBsAsTreePlot = function(file,tree,bs,pLMargin=0.02,pHMargin=0.1,base_height=
   }
 
   #Saving the results
-  save_plot(filename = file,plot=outTreeWithAs,base_height = base_height)
+  save_plot(filename = file,plot=outTreeWithAs,base_height = base_height, create.dir = T)
 }
 
 #MAIN

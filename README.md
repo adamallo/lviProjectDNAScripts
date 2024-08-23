@@ -1,12 +1,16 @@
 # README
-Repository to replicate the DNA-seq and downstream analyses in: ***Characterization of the lymphovascular invasion microenvironment reveals immune response dichotomy***. *Rivero-Gutierrez, Mallo, et al. 2024*. Note, the first step in the pipeline (variant calling) is not deterministic and thus there may be small differences every time the pipeline is run if the random number generator seed is not fixed. Unfortunately, it was an oversight in my part not to set a fixed number generator seed when we ran the analyses for the manuscript. This is now implemented in this repository.
+Repository to replicate the DNA-seq and downstream analyses in: 
+
+***Characterization of the lymphovascular invasion microenvironment reveals immune response dichotomy***. *Rivero-Gutierrez, Mallo, et al. 2024*. 
+
+Note that the first step in the pipeline (variant calling) is not deterministic. Thus, there may be minor differences every time the pipeline is run if the random number generator seed is not fixed. Unfortunately, it was an oversight on my part not to set a fixed number generator seed when we ran the analyses for the manuscript. This is now implemented in this repository.
 
 # Description
-These analysis are carried out in eight main steps, CNA calling, Genetic analyses, Clonality analyses, recurrent CNA calling, analysis of the associations between CNAs and stages and subtypes, comparison between differentially-expressed and differentially-altered genes, copy number alteration enrichment analyses, and phylogenetic reconstruction. CNA calling is a pre-requisite for all of them.
+These analyses are carried out in eight main steps: CNA calling, Genetic analyses, Clonality analyses, recurrent CNA calling, analysis of the associations between CNAs and stages and subtypes, comparison between differentially-expressed and differentially-altered genes, copy number alteration enrichment analyses, and phylogenetic reconstruction. CNA calling is a prerequisite for all of them.
 
 # Instructions
 To replicate these analyses, follow these steps:
-1. Modify the *configFile.in* file to configure it for your system and rename it as *configFile*. You can find an example configuration file in the repository, *configFile.ex*.
+1. Modify the *configFile.in* file to configure it for your system and rename it as *configFile*. An example configuration file, *configFile.ex*, can be found in the repository.
 2. Export an environmental variable with the absolute path of this repository `export lviProjectDNAScripts="/path/to/the/repository/lviProjectDNAScripts/"`
 3. Make sure to have installed all the dependencies [listed below](#dependencies). You can execute the R script *dependencies.R* to install all R packages.
 4. Run the analyses you are interested in from the list below
@@ -29,7 +33,7 @@ To replicate these analyses, follow these steps:
 
 - **Comparison between differential expression and copy number alteration results**: the script *diffExpVsCNAs.R* does these comparisons.
 
-- **Enrichment analyses**: CNA enrichment analyses of all alterations (*deNovoEnrichment.R*) or recurrent alterations (*deNovoEnrichmentGistic.R*). The second requires the GISTIC 2.results.
+- **Enrichment analyses**: CNA enrichment analyses of all alterations (*deNovoEnrichment.R*) or recurrent alterations (*deNovoEnrichmentGistic.R*). The second requires the GISTIC 2.0 results.
 
 - **Phylogenetic/dendogram reconstruction**: the scripts *getBinaryData.R* generates binary data using breakpoint information, which then is used in Phylip to reconstruct the best sample tree and its bootstrap support (*runPhylip.sh*, must be run from the directory with the results from *getBinaryData.R*, for example using `$lviProjectDNAScripts/runPhylip.sh`. It uses *dollopCMD*, *dollopCMDBoost*, and *seqbootCMD* command files internally). Finally, the script *dollopAnalysis.R* performs the ancestral state reconstruction and generates the plots for the manuscript.
 

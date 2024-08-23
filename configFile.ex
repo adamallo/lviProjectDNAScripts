@@ -13,7 +13,7 @@ sampleDataFile="/Users/thisUserName/lvi/sampleDataFile.csv" #path to the CSV des
 
 #Other general configuration variables
 mc_cores=1 #number of CPU cores you want to use in parallel for some of the analyses
-randomSeed=20 #random number generator seed for repeatibility
+randomSeed=8485 #random number generator seed for repeatibility
 
 #Genetics
 summaryFileName="dataForGenetics.rds" #filename to re-use pre-generated data. By default, it will be generated or expected in $acnaDir

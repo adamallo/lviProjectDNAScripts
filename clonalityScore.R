@@ -131,8 +131,8 @@ setDTthreads(1)
 inputDir <- acnaDir
 varFile <- paste(sep="/",acnaDir,"variance.tsv")
 
-inputDataImage <- paste(inputDir,inputDataImageName) #Not needed
-calculationDataImage <- paste(inputDir,calculationDataImageName) #Not needed
+inputDataImage <- paste(sep="/",inputDir,inputDataImageName) #Not needed
+calculationDataImage <- paste(sep="/",inputDir,calculationDataImageName) #Not needed
 
 options(mc.cores=mc_cores)
 
