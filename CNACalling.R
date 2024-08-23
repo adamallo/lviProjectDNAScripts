@@ -222,6 +222,10 @@ bin_color <- "black"
 segment_color <- "red"
 absolute_copy_number_step_color <- "blue"
 
+if(exists("randomSeed") & is.numeric(randomSeed)){
+	set.seed(randomSeed)
+}
+
 #Data IO and manipulation:
 sampleData <- fread(originalSampleDataFile)
 setnames(sampleData,old=c("Sample_ID","Case"),new=c("sampleID","patient"))

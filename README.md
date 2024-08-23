@@ -1,5 +1,5 @@
 # README
-Repository to replicate the DNA-seq and downstream analyses in: Characterization of the lymphovascular invasion microenvironment reveals immune response dichotomy. Rivero-Gutierrez, Mallo, et al. 2024
+Repository to replicate the DNA-seq and downstream analyses in: ***Characterization of the lymphovascular invasion microenvironment reveals immune response dichotomy***. *Rivero-Gutierrez, Mallo, et al. 2024*. Note, the first step in the pipeline (variant calling) is not deterministic and thus there may be small differences every time the pipeline is run if the random number generator seed is not fixed. Unfortunately, it was an oversight in my part not to set a fixed number generator seed when we ran the analyses for the manuscript. This is now implemented in this repository.
 
 # Description
 These analysis are carried out in eight main steps, CNA calling, Genetic analyses, Clonality analyses, recurrent CNA calling, analysis of the associations between CNAs and stages and subtypes, comparison between differentially-expressed and differentially-altered genes, copy number alteration enrichment analyses, and phylogenetic reconstruction. CNA calling is a pre-requisite for all of them.
@@ -31,7 +31,7 @@ To replicate these analyses, follow these steps:
 
 - **Enrichment analyses**: CNA enrichment analyses of all alterations (*deNovoEnrichment.R*) or recurrent alterations (*deNovoEnrichmentGistic.R*). The second requires the GISTIC 2.results.
 
-- **Phylogenetic/dendogram reconstruction**: the scripts *getBinaryData.R* generates binary data using breakpoint information, which then is used in Phylip to reconstruct the best sample tree and its bootstrap support (*runPhylip.sh*, must be run from the directory with the results from *getBinaryData.R*, for example using `$scriptsDir/runPhylip.sh`. It uses *dollopCMD*, *dollopCMDBoost*, and *seqbootCMD* command files internally). Finally, the script *dollopAnalysis.R* performs the ancestral state reconstruction and generates the plots for the manuscript.
+- **Phylogenetic/dendogram reconstruction**: the scripts *getBinaryData.R* generates binary data using breakpoint information, which then is used in Phylip to reconstruct the best sample tree and its bootstrap support (*runPhylip.sh*, must be run from the directory with the results from *getBinaryData.R*, for example using `$lviProjectDNAScripts/runPhylip.sh`. It uses *dollopCMD*, *dollopCMDBoost*, and *seqbootCMD* command files internally). Finally, the script *dollopAnalysis.R* performs the ancestral state reconstruction and generates the plots for the manuscript.
 
 ## Dependencies
 
